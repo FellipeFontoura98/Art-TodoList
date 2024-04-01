@@ -1,28 +1,47 @@
 const button = document.querySelector('.button-add-task')
 const input = document.querySelector('.input-task')
+const listaCompleta = document.querySelector('.list-tasks')
 
 let minhaListaDeItens = []
 
 
 
-function adicionarNovaTarefa(){
+function adicionarNovaTarefa() {
     minhaListaDeItens.push(input.value)
+
+    input.value=''
 
     mostraTarefas()
 }
 
-function mostraTarefas(){
-
+function mostraTarefas() {
     let novaLi = ''
 
-    minhaListaDeItens.forEach()
+    // ['comprar café', 'estudar programação']
+    
+    minhaListaDeItens.forEach((tarefa, posicao) => {
 
-//      <li class="task">
-//      <img src="./img/checked.png" alt="check-na-tarefa">
-//      <p>Terminar essa Todo List</p>
-//      <img src="./img/trash.png" alt="tarefa-para-lixo">
-//      </li>
+        novaLi = novaLi + `
+       
+        <li class="task">
+            <img src="./img/checked.png" alt="check-na-tarefa">
+            <p>${tarefa}</p>
+            <img src="./img/trash.png" alt="tarefa-para-lixo" onclick="deletarItem(${posicao})">
+        </li>
+
+        `
+    })
+
+    listaCompleta.innerHTML = novaLi
+
+
 }
+
+function deletarItem(posicao){
+    minhaListaDeItens.splice(posicao, 1)
+    mostraTarefas()
+}
+
 
 
 
